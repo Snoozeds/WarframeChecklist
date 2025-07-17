@@ -1,0 +1,465 @@
+:root {
+    --background-color: #171717;
+    --primary-color: #444444;
+    --secondary-color: #4A6FA5;
+    --accent-color: #FF2D55;
+    --text-color: #EDEDED;
+    --daily-color: #2A7FFF;
+    --weekly-color: #FF7F2A;
+    --success-color: #28a745;
+    --category-bg: #2a2a2a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16pt;
+    color: var(--text-color);
+}
+
+body {
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent-color);
+}
+
+.main-container {
+    width: 1200px;
+    max-width: 100%;
+    display: flex;
+    gap: 30px;
+}
+
+.task-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.section-header {
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.daily-header {
+    background-color: var(--daily-color);
+    color: var(--background-color);
+}
+
+.weekly-header {
+    background-color: var(--weekly-color);
+    color: var(--background-color);
+}
+
+.progress-container {
+    margin-bottom: 20px;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.daily-progress {
+    background-color: var(--daily-color);
+}
+
+.weekly-progress {
+    background-color: var(--weekly-color);
+}
+
+.percentage-text {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.custom-task-form {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.task-input {
+    padding: 12px 80px 12px 20px;
+    width: 100%;
+    background: none;
+    border: 2px solid var(--secondary-color);
+    border-radius: 1000px;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    caret-color: var(--accent-color);
+}
+
+.task-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.add-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: var(--accent-color);
+    height: calc(100% - 4px);
+    padding: 0 20px;
+    border: none;
+    border-radius: 1000px;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--background-color);
+    cursor: pointer;
+    transition: 250ms ease;
+}
+
+.add-button:hover {
+    background-color: #B8002E;
+}
+
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.task-category {
+    margin-bottom: 15px;
+}
+
+.category-header {
+    background-color: var(--category-bg);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.category-header:hover {
+    background-color: #333333;
+}
+
+.category-arrow {
+    width: 12px;
+    height: 12px;
+    stroke: var(--secondary-color);
+    transition: transform 0.2s ease;
+}
+
+.category-collapsed .category-arrow {
+    transform: rotate(-90deg);
+}
+
+.category-tasks {
+    margin-top: 5px;
+    padding-left: 0;
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+}
+
+.category-collapsed .category-tasks {
+    max-height: 0;
+    margin-top: 0;
+}
+
+.task {
+    padding: 0 16px;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: all 250ms ease;
+    margin-bottom: 2px;
+    opacity: 1;
+    cursor: move;
+}
+
+.task.dragging {
+    opacity: 0.5;
+}
+
+.task:hover {
+    background-color: #555555;
+}
+
+.task.completed {
+    opacity: 0.6;
+}
+
+.task.hidden {
+    opacity: 0.3;
+    transform: scale(0.98);
+}
+
+.task .task-text {
+    padding: 12px 15px;
+    flex-grow: 1;
+    transition: 250ms ease;
+    font-size: 0.9rem;
+    cursor: pointer;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}
+
+
+.hide-button {
+    padding: 8px;
+    background: none;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 250ms ease;
+    opacity: 0.6;
+}
+
+.hide-button:hover {
+    background-color: var(--secondary-color);
+    opacity: 1;
+}
+
+.hide-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--secondary-color);
+    transition: 250ms ease;
+}
+
+.hide-button:hover .hide-icon {
+    fill: var(--text-color);
+}
+
+.delete-button {
+    padding: 8px;
+    background: none;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 250ms ease;
+    opacity: 0.6;
+}
+
+.delete-button:hover {
+    background-color: var(--accent-color);
+    opacity: 1;
+}
+
+.delete-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--secondary-color);
+    transition: 250ms ease;
+}
+
+.delete-button:hover .delete-icon {
+    fill: var(--text-color);
+}
+
+.checkbox {
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: 250ms ease;
+    cursor: pointer;
+}
+
+.done-icon {
+    width: 14px;
+    height: 14px;
+    fill: transparent;
+    transition: 250ms ease;
+}
+
+input[type="checkbox"]:checked~.checkbox {
+    background-color: var(--accent-color);
+}
+
+input[type="checkbox"]:checked~.checkbox .done-icon {
+    fill: var(--primary-color);
+}
+
+input[type="checkbox"]:checked~.task-text {
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.control-button {
+    padding: 8px 16px;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 20px;
+    color: var(--text-color);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.control-button:hover {
+    background-color: var(--accent-color);
+}
+
+.control-button.active {
+    background-color: var(--accent-color);
+}
+
+.site-footer {
+    margin-top: 40px;
+    padding: 20px 30px;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    width: 100%;
+    max-width: 1200px;
+}
+
+.site-footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.reset-notification {
+    background: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: translateX(120%);
+    opacity: 0;
+}
+.reset-notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+
+
+@media(max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    html {
+        font-size: 14pt;
+    }
+
+    h1 {
+        margin-top: 20px;
+        font-size: 2.5rem;
+    }
+
+    .add-button {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        height: auto;
+    }
+
+    .task-input {
+        padding-right: 20px;
+    }
+}
+
+@media(max-width: 500px) {
+    html {
+        font-size: 12pt;
+    }
+
+    h1 {
+        font-size: 15vw;
+    }
+}

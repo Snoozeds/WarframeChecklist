@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warframe Checklist</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <h1>Warframe Checklist</h1>
+
+    <div class="main-container">
+        <!-- Daily Tasks Section -->
+        <div class="task-section">
+            <div class="section-header daily-header">Daily Tasks</div>
+
+            <div class="progress-container">
+                <div class="progress-text" id="daily-progress-text">0 / 0 completed</div>
+                <div class="progress-bar">
+                    <div class="progress-fill daily-progress" id="daily-progress-fill"></div>
+                </div>
+                <div class="percentage-text" id="daily-percentage-text">0%</div>
+            </div>
+
+            <div class="controls">
+                <button class="control-button" onclick="toggleCompleted('daily')">Hide Completed</button>
+                <button class="control-button" onclick="expandAll('daily')">Expand All</button>
+                <button class="control-button" onclick="collapseAll('daily')">Collapse All</button>
+                <button class="control-button" onclick="resetAllDailyTasks()">Reset All</button>
+            </div>
+
+            <form class="custom-task-form">
+                <input class="task-input" type="text" placeholder="Add daily task" data-type="daily">
+                <button type="submit" class="add-button">ADD</button>
+            </form>
+
+            <div class="task-list" id="daily-tasks">
+                <!-- Daily tasks will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Weekly Tasks Section -->
+        <div class="task-section">
+            <div class="section-header weekly-header">Weekly Tasks</div>
+
+            <div class="progress-container">
+                <div class="progress-text" id="weekly-progress-text">0 / 0 completed</div>
+                <div class="progress-bar">
+                    <div class="progress-fill weekly-progress" id="weekly-progress-fill"></div>
+                </div>
+                <div class="percentage-text" id="weekly-percentage-text">0%</div>
+            </div>
+
+            <div class="controls">
+                <button class="control-button" onclick="toggleCompleted('weekly')">Hide Completed</button>
+                <button class="control-button" onclick="expandAll('weekly')">Expand All</button>
+                <button class="control-button" onclick="collapseAll('weekly')">Collapse All</button>
+                <button class="control-button" onclick="resetAllWeeklyTasks()">Reset All</button>
+            </div>
+
+            <form class="custom-task-form">
+                <input class="task-input" type="text" placeholder="Add weekly task" data-type="weekly">
+                <button type="submit" class="add-button">ADD</button>
+            </form>
+
+            <div class="task-list" id="weekly-tasks">
+                <!-- Weekly tasks will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>
+            Digital Extremes Ltd, and Warframe are registered trademarks. All rights are reserved worldwide. This site
+            has no official link with Digital Extremes Ltd or Warframe.
+            All recognizable features of the intellectual property relating to these trademarks are likewise the
+            intellectual property of Digital Extremes Ltd. Icons by <a href="https://icons8.com/"
+                target="_blank">Icons8</a>.
+        </p>
+    </footer>
+
+    <div id="notification-container"></div>
+
+</body>
+<script src="js/app.js"></script>
+</html>
